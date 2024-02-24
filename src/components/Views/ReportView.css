@@ -1,0 +1,68 @@
+.report-view {
+  background-color: white; /* Fondo blanco */
+  border-radius: 10px; /* Bordes redondeados */
+  padding: 20px; /* Espacio interno para el contenido */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
+}
+
+.total-text {
+  margin-left: 10px;
+  margin-top: 10px; /* Espacio superior */
+  font-size: 20px; /* Tamaño del texto */
+  color: #000000; /* Color del texto */
+  font-weight: bold; /* Texto en negrita */
+}
+
+.date-input {
+  padding: 5px;
+  margin-right: 10px;
+}
+
+.consultar-button {
+  padding: 10px 20px;
+  background-color: #007bff; /* Color de fondo azul */
+  color: white; /* Texto en color blanco */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.consultar-button:hover {
+  background-color: #0056b3; /* Color de fondo azul más oscuro al pasar el cursor */
+}
+
+/* Estilos de la tabla */
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  background-color: #333; /* Color de fondo oscuro */
+  color: white; /* Texto en color blanco */
+}
+
+/* Estilos para las celdas del encabezado */
+.report-table th {
+  background-color: #444; /* Color de fondo oscuro más oscuro */
+  border: 1px solid #dddddd;
+  padding: 8px;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* Estilos para las celdas de datos */
+.report-table td {
+  border: 1px solid #dddddd;
+  padding: 8px;
+  font-size: 12px;
+}
+
+/* Estilos para las filas impares (alternar color) */
+.report-table tbody tr:nth-child(odd) {
+  background-color: #555; /* Color de fondo oscuro más oscuro */
+}
+
+/* Estilos para las filas al pasar el cursor sobre ellas */
+.report-table tbody tr:hover {
+  background-color: #666; /* Color de fondo oscuro más oscuro */
+}

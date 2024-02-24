@@ -1,0 +1,143 @@
+.client-view {
+  background-color: white; /* Fondo blanco */
+  border-radius: 10px; /* Bordes redondeados */
+  padding: 20px; /* Espacio interno para el contenido */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
+  font-family: Arial, sans-serif; /* Fuente */
+  width: 80%; /* Ancho del componente */
+  margin: 0 auto; /* Centrar en la página */
+}
+
+.add-client-form,
+.existing-clients,
+.edit-client {
+  margin-bottom: 30px; /* Margen inferior entre secciones */
+}
+
+h2 {
+  font-size: 1.5em; /* Tamaño del título */
+  color: #333; /* Color de texto oscuro */
+}
+
+.form-group {
+  margin-bottom: 15px; /* Margen inferior entre grupos de formulario */
+}
+
+label {
+  display: block; /* Mostrar etiquetas en bloque */
+  margin-bottom: 5px; /* Margen inferior para las etiquetas */
+  color: #333; /* Color de texto oscuro */
+}
+
+input[type="text"],
+input[type="password"],
+select {
+  width: 100%; /* Ancho completo */
+  padding: 10px; /* Relleno */
+  font-size: 1em; /* Tamaño de fuente */
+}
+
+button[type="submit"],
+button[type="button"] {
+  padding: 10px 20px; /* Relleno */
+  font-size: 1em; /* Tamaño de fuente */
+  background-color: #007bff; /* Color azul para los botones */
+  color: #fff; /* Texto blanco */
+  border: none; /* Sin borde */
+  cursor: pointer; /* Cursor de puntero */
+  border-radius: 5px; /* Bordes redondeados */
+}
+
+button[type="submit"]:hover,
+button[type="button"]:hover {
+  background-color: #0056b3; /* Color azul oscuro al pasar el ratón */
+}
+
+.client-info {
+  font-size: 1.1em; /* Tamaño de fuente */
+  color: #333; /* Color de texto oscuro */
+}
+
+.edit-client form {
+  margin-top: 20px; /* Margen superior */
+}
+
+.edit-client label {
+  color: #333; /* Color de texto oscuro */
+}
+
+.edit-client input[type="password"] {
+  margin-bottom: 15px; /* Margen inferior */
+}
+
+/* Estilos para la tabla de clientes */
+.client-view table {
+  width: 100%; /* Ancho completo */
+  border-collapse: collapse; /* Colapsar bordes de la tabla */
+  background-color: #333; /* Color de fondo de la tabla */
+}
+
+.client-view th,
+.client-view td {
+  padding: 12px 15px; /* Relleno */
+  text-align: left; /* Alineación del texto a la izquierda */
+  border-bottom: 1px solid #fff; /* Borde inferior blanco */
+  color: #fff; /* Color de texto blanco */
+}
+
+.client-view th {
+  background-color: #555; /* Color de fondo del encabezado */
+}
+
+.client-view tr:hover {
+  background-color: #777; /* Cambio de color al pasar el mouse */
+}
+
+/* Estilos para los botones de clientes */
+.custom-button {
+  padding: 10px 20px; /* Relleno */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer; /* Cursor de puntero */
+  font-weight: bold; /* Negrita */
+}
+
+.edit-button {
+  background-color: #007bff; /* Color para el botón de editar */
+}
+
+.cancel-button {
+  background-color: #6c757d; /* Color de fondo para el botón de cancelar */
+}
+
+.custom-button:hover,
+.cancel-button:hover {
+  opacity: 0.8; /* Reducción de opacidad al pasar el mouse */
+}
+
+.edit-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: #007bff; /* Color para el botón de editar */
+  color: #fff; /* Color del texto del botón de editar */
+}
+
+.edit-button:hover {
+  opacity: 0.8; /* Reducción de opacidad al pasar el mouse */
+}
+.cancel-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: #6c757d; /* Color de fondo para el botón de cancelar */
+  color: #fff; /* Color del texto del botón de cancelar */
+}
+
+.cancel-button:hover {
+  opacity: 0.8; /* Reducción de opacidad al pasar el mouse */
+}

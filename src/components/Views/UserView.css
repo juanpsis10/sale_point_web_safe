@@ -1,0 +1,132 @@
+.user-view {
+  background-color: white; /* Fondo blanco */
+  border-radius: 10px; /* Bordes redondeados */
+  padding: 20px; /* Espacio interno para el contenido */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
+}
+
+.user-view {
+  font-family: Arial, sans-serif;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.add-user-form,
+.existing-users,
+.edit-user {
+  margin-bottom: 30px;
+}
+
+h2 {
+  font-size: 1.5em;
+  color: #333; /* Color de texto oscuro */
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333; /* Color de texto oscuro */
+}
+
+input[type="text"],
+input[type="password"],
+select {
+  width: 100%;
+  padding: 10px;
+  font-size: 1em;
+}
+
+button[type="submit"],
+button[type="button"] {
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #007bff; /* Color azul para los botones */
+  color: #fff; /* Texto blanco */
+  border: none;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover,
+button[type="button"]:hover {
+  background-color: #0056b3; /* Color azul oscuro al pasar el ratón */
+}
+
+.user-info {
+  font-size: 1.1em;
+  color: #333; /* Color de texto oscuro */
+}
+
+.edit-user form {
+  margin-top: 20px;
+}
+
+.edit-user label {
+  color: #333; /* Color de texto oscuro */
+}
+
+.edit-user input[type="password"] {
+  margin-bottom: 15px;
+}
+
+/* Estilos para la tabla */
+.user-view table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #333; /* Color de fondo de la tabla */
+}
+
+.user-view th,
+.user-view td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #fff; /* Cambiamos el color del borde */
+  color: #fff;
+}
+
+.user-view th {
+  background-color: #555; /* Cambiamos el color de fondo del encabezado */
+}
+
+.user-view tr:hover {
+  background-color: #777; /* Cambiamos el color de fondo al pasar el mouse */
+}
+
+/* Estilos para los botones */
+.custom-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.edit-button {
+  background-color: #007bff; /* Color para el botón de editar */
+  color: #fff; /* Color del texto del botón de editar */
+}
+
+.deactivate-button {
+  background-color: #dc3545; /* Color para el botón de desactivar */
+  color: #fff; /* Color del texto del botón de desactivar */
+}
+
+.activate-button {
+  background-color: #28a745; /* Color para el botón de activar */
+  color: #fff; /* Color del texto del botón de activar */
+}
+
+.custom-button:hover {
+  opacity: 0.8; /* Reducción de opacidad al pasar el mouse */
+}
+.cancel-button {
+  background-color: #6c757d; /* Color de fondo para el botón de cancelar */
+  color: #fff; /* Color del texto del botón de cancelar */
+}
+
+.cancel-button:hover {
+  opacity: 0.8; /* Reducción de opacidad al pasar el mouse */
+}

@@ -1,0 +1,184 @@
+.product-view {
+  background-color: white; /* Fondo blanco */
+  border-radius: 10px; /* Bordes redondeados */
+  padding: 20px; /* Espacio interno para el contenido */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
+}
+label {
+  color: black;
+}
+
+h2 {
+  color: black;
+}
+
+.product-info {
+  color: black;
+}
+
+/* Estilos para el formulario de agregar nuevo producto */
+.add-product-form {
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.add-product-form h2 {
+  margin-bottom: 10px;
+}
+
+.add-product-form .form-group {
+  margin-bottom: 15px;
+}
+
+.add-product-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.add-product-form input,
+.add-product-form select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.add-product-form button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.add-product-form button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos para la lista de productos existentes */
+.existing-products {
+  margin-bottom: 20px;
+}
+
+.existing-products h2 {
+  margin-bottom: 10px;
+}
+
+.existing-products ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.existing-products li {
+  margin-bottom: 15px;
+}
+
+.existing-products .product-info {
+  margin-bottom: 5px;
+}
+
+.existing-products button {
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.existing-products button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos para el cuadro de editar producto */
+.edit-product {
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.edit-product h2 {
+  margin-bottom: 10px;
+}
+
+.edit-product .form-group {
+  margin-bottom: 15px;
+}
+
+.edit-product label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.edit-product input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.edit-product button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.edit-product button:last-child {
+  margin-right: 0;
+}
+
+.edit-product button:hover {
+  background-color: #0056b3;
+}
+
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  color: #333; /* Cambio de color del texto a oscuro */
+}
+
+.product-table th,
+.product-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.product-table th {
+  background-color: #f2f2f2;
+}
+
+.product-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.product-table tr:hover {
+  background-color: #ddd;
+}
+
+.product-table td button {
+  padding: 6px 12px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.product-table td button:last-child {
+  margin-right: 0;
+}
+
+.product-table td button:hover {
+  background-color: #0056b3;
+}

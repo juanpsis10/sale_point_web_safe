@@ -1,7 +1,7 @@
 const knex = require("knex")({
   client: "sqlite3",
   connection: {
-    filename: "./DB/anime.db", // Ruta de mi BD c:
+    filename: "./DB/sale_point.db", // Ruta de mi BD c:
   },
 });
 

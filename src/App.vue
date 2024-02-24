@@ -1,40 +1,37 @@
 <template>
-  <div class="Barnav">
-    <AppBarnav msg="Welcome to Your Vue.js App" />
-    <button @click="getUsers">Mostrar Usuarios</button>
+  <div>
+    <LoginView v-if="!loggedIn" @login-success="handleLoginSuccess" />
+    <HomeView v-else @logout="handleLogout" />
   </div>
-  <MainComponent />
 </template>
 
 <script>
-import AppBarnav from "./components/AppBarnav/AppBarnav.vue";
-import MainComponent from "./components/MainComponent/MainComponent.vue";
-import axios from "axios";
+import LoginView from "./components/Views/LoginView.vue";
+import HomeView from "./components/Views/HomeView.vue";
 
 export default {
   name: "App",
   components: {
-    AppBarnav,
-    MainComponent,
+    LoginView,
+    HomeView,
+  },
+  data() {
+    return {
+      credentials: {},
+      loggedIn: false,
+    };
   },
   methods: {
-    async getUsers() {
-      try {
-        // Realizar la petición a la ruta 'http://localhost:3000/users' usando Axios
-        const response = await axios.get("http://localhost:3000/users");
-        const users = response.data;
-        const userList = users.map((user) => user.user_name).join("\n");
-        alert("Usuarios:\n" + userList);
-      } catch (error) {
-        alert("Error al obtener usuarios.");
-      }
+    handleLoginSuccess() {
+      // Manejar el éxito del inicio de sesión
+      this.loggedIn = true;
+    },
+    handleLogout() {
+      // Manejar el cierre de sesión
+      this.loggedIn = false;
     },
   },
 };
 </script>
 
-<style>
-.Barnav {
-  background-color: #1e1f22; /* Agregado: fondo oscuro */
-}
-</style>
+<style></style>
