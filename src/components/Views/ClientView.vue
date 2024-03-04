@@ -130,13 +130,16 @@ export default {
     // Método para agregar un nuevo cliente
     async addClient() {
       try {
-        const response = await fetch("http://localhost:3000/client/addclient", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(this.newClient),
-        });
+        const response = await fetch(
+          "https://sale-point-backend-test.onrender.com/client/addclient",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(this.newClient),
+          }
+        );
 
         if (response.ok) {
           const newClient = await response.json();
@@ -155,7 +158,9 @@ export default {
     // Método para obtener todos los clientes
     async getClients() {
       try {
-        const response = await fetch("http://localhost:3000/client/allclients");
+        const response = await fetch(
+          "https://sale-point-backend-test.onrender.com/client/allclients"
+        );
         if (!response.ok) {
           throw new Error("Error al obtener clientes");
         }
@@ -174,13 +179,16 @@ export default {
       try {
         const { id, name, document, phone } = this.editingClient;
         const data = { name, document, phone };
-        const response = await fetch(`http://localhost:3000/client/${id}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        });
+        const response = await fetch(
+          `https://sale-point-backend-test.onrender.com/client/${id}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          }
+        );
         if (response.ok) {
           const updatedClient = await response.json();
           const index = this.clients.findIndex(

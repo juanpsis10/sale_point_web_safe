@@ -1,0 +1,50 @@
+[
+    {
+        "code": "KAZ-000001",
+        "description": "Ticket Kamizake",
+        "id": 13,
+        "name": "Ticket Kamizake"
+    },
+    {
+        "code": "PIR-000001",
+        "description": "Ticket Pirámide",
+        "id": 14,
+        "name": "Ticket Piramide"
+    },
+    {
+        "code": "CRL-000001",
+        "description": "Ticket Carrucel",
+        "id": 15,
+        "name": "Ticket Carrucel"
+    },
+    {
+        "code": "PSN-000001",
+        "description": "Ticket Piscina",
+        "id": 16,
+        "name": "Ticket Piscina"
+    },
+    {
+        "code": "STR-000001",
+        "description": "Ticket Estrategia",
+        "id": 17,
+        "name": "Ticket Estrategia"
+    },
+    {
+        "code": "TRN-000001",
+        "description": "Ticket Trencito",
+        "id": 18,
+        "name": "Ticket Trencito"
+    },
+    {
+        "code": "GLB-000001",
+        "description": "Ticket Globo",
+        "id": 19,
+        "name": "Ticket Globo"
+    },
+    {
+        "code": "FBT-000001",
+        "description": "Ticket Fulbito",
+        "id": 20,
+        "name": "Ticket Fulbito"
+    }
+]

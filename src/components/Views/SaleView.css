@@ -10,6 +10,49 @@
   grid-row-gap: 0px;
 }
 
+/* Estilos para el botón "Volver" */
+.volver-button {
+  background-color: #4caf50; /* Color de fondo */
+  color: white; /* Color del texto */
+  padding: 10px 20px; /* Espaciado interno */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer; /* Cursor al pasar el ratón */
+  font-size: 16px; /* Tamaño de fuente */
+  margin-right: 10px; /* Margen derecho */
+}
+
+/* Estilos para el botón "Cerrar" */
+.close-modal {
+  background-color: #f44336; /* Color de fondo */
+  color: white; /* Color del texto */
+  padding: 10px 20px; /* Espaciado interno */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer; /* Cursor al pasar el ratón */
+  font-size: 16px; /* Tamaño de fuente */
+}
+
+.detalles-button {
+  padding: 5px 10px;
+  font-size: 8px;
+  cursor: pointer;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.detalles-button:hover {
+  background-color: #042f5d;
+}
+
+/* Estilos específicos para la clase detalles-button */
+.detalles-button {
+  background-color: #0056b3;
+}
+
 .button-add {
   padding: 10px 20px; /* Espaciado interno */
   background-color: #007bff; /* Color de fondo */
@@ -50,12 +93,16 @@
   margin-right: 10px;
 }
 
-.total_ventas {
-  font-size: 50px;
+.modal-span-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px; /* Ajusta el margen entre los spans y la tabla */
 }
 
-.modal-content {
-  align-items: center;
+.total_ventas {
+  margin-bottom: 5px; /* Ajusta el margen entre los spans */
+  font-size: 15px;
 }
 
 label {
@@ -212,27 +259,32 @@ span {
   padding: 20px;
   border: 1px solid #888;
   width: 50%; /* Ancho del cuadro de diálogo */
+  align-items: center;
+  overflow: auto; /* Agregar esta línea para permitir el desplazamiento vertical */
 }
 
 /* Estilos para la tabla con la clase "custom-table" */
 .custom-table {
-  width: 100%;
+  width: 90%;
   border-collapse: collapse;
   border-spacing: 0;
+  overflow: auto; /* Agregar desplazamiento si el contenido es demasiado grande */
 }
 
 /* Estilos para las celdas del encabezado */
 .custom-table th {
   background-color: #f2f2f2;
   border: 1px solid #dddddd;
-  padding: 8px;
+  padding: 4px;
   text-align: left;
+  font-size: 12px;
 }
 
 /* Estilos para las celdas de datos */
 .custom-table td {
   border: 1px solid #dddddd;
-  padding: 8px;
+  padding: 4px;
+  font-size: 12px;
 }
 
 /* Estilos para las filas impares (alternar color) */
@@ -324,4 +376,22 @@ span {
 .username-span,
 .boleta-span {
   font-weight: bold;
+}
+
+.imprimir-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 8px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.imprimir-button:hover {
+  background-color: #45a049;
 }

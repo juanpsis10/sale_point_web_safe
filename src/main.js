@@ -5,13 +5,16 @@ import { initializeApp } from "firebase/app";
 import "bootstrap";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyANHTBbCU5RYbzZBFOo9TZk93z6Kgbp7ks",
-  authDomain: "proyectoanime-986a8.firebaseapp.com",
-  projectId: "proyectoanime-986a8",
-  storageBucket: "proyectoanime-986a8.appspot.com",
-  messagingSenderId: "281835488208",
-  appId: "1:281835488208:web:53d94575a8f6a5fd232fd5",
-  measurementId: "G-3WF8H2HZ8X",
+  apiKey: "API_KEY",
+  authDomain: "PROJECT_ID.firebaseapp.com",
+  // The value of `databaseURL` depends on the location of the database
+  databaseURL: "https://DATABASE_NAME.firebaseio.com",
+  projectId: "PROJECT_ID",
+  storageBucket: "PROJECT_ID.appspot.com",
+  messagingSenderId: "SENDER_ID",
+  appId: "APP_ID",
+  // For Firebase JavaScript SDK v7.20.0 and later, `measurementId` is an optional field
+  measurementId: "G-MEASUREMENT_ID",
 };
 
 // Initialize Firebase

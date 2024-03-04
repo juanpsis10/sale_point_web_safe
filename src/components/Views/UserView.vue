@@ -134,13 +134,16 @@ export default {
     async addUser() {
       try {
         // Realizar la solicitud POST para agregar un nuevo usuario
-        const response = await fetch("http://localhost:3000/user/adduser", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(this.newUser),
-        });
+        const response = await fetch(
+          "https://sale-point-backend-test.onrender.com/user/adduser",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(this.newUser),
+          }
+        );
 
         if (response.ok) {
           const newUser = await response.json();
@@ -160,7 +163,9 @@ export default {
     },
     async getUsers() {
       try {
-        const response = await fetch("http://localhost:3000/user/allusers");
+        const response = await fetch(
+          "https://sale-point-backend-test.onrender.com/user/allusers"
+        );
         if (!response.ok) {
           throw new Error("Error al obtener usuarios");
         }
@@ -180,7 +185,7 @@ export default {
     async activateUser(user) {
       try {
         const response = await fetch(
-          `http://localhost:3000/user/${user.id}/activate`,
+          `https://sale-point-backend-test.onrender.com/user/${user.id}/activate`,
           {
             method: "PUT",
           }
@@ -201,7 +206,7 @@ export default {
     async deactivateUser(user) {
       try {
         const response = await fetch(
-          `http://localhost:3000/user/${user.id}/disable`,
+          `https://sale-point-backend-test.onrender.com/user/${user.id}/disable`,
           {
             method: "PUT",
           }
@@ -230,13 +235,16 @@ export default {
         if (this.newPassword) {
           data.password = this.newPassword;
         }
-        const response = await fetch(`http://localhost:3000/user/${id}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        });
+        const response = await fetch(
+          `https://sale-point-backend-test.onrender.com/user/${id}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          }
+        );
         if (response.ok) {
           const updatedUser = await response.json();
           // Actualizar la lista de usuarios

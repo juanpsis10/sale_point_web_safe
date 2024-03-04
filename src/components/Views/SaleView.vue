@@ -49,6 +49,17 @@
           </option>
         </select>
       </div>
+      <!-- Método de pago -->
+      <div class="sales-info">
+        <label for="metodoPago">Método de pago:</label>
+        <input
+          type="checkbox"
+          id="metodoPago"
+          v-model="selectedPaymentMethod"
+        />
+        <label for="metodoPago">Yape</label>
+        <!-- Texto para indicar que el checkbox es para efectivo -->
+      </div>
     </div>
     <div class="div2">
       <div class="logo">
@@ -91,7 +102,7 @@
             <th>Cantidad</th>
             <th>Precio Unitario</th>
             <th>Subtotal</th>
-            <th></th>
+            <th>Eliminar</th>
           </tr>
         </thead>
         <tbody>
@@ -136,31 +147,95 @@
     <div id="modal" class="modal">
       <div class="modal-content">
         <!-- Aquí puedes agregar el contenido de tu cuadro de diálogo -->
+        <div v-if="!mostrarDetalles">
+          <div class="modal-span-container">
+            <span class="total_ventas">TOTAL: S/. {{ totalVentas }}</span>
+            <span class="total_ventas">
+              Total en efectivo: S/. {{ totalVentasEfectivo }}
+            </span>
+            <span class="total_ventas">
+              Total en Yape: S/. {{ totalVentasYape }}
+            </span>
+          </div>
 
-        <span class="total_ventas">TOTAL: S/. {{ totalVentas }}</span>
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>Usuario</th>
+                <th>Cliente</th>
+                <th>Fecha</th>
+                <th>Número de Documento</th>
+                <th>Total</th>
+                <th>Metodo de Pago</th>
+                <th>Imprimir</th>
+                <th>Detalles</th>
+                <!-- Nueva columna -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="venta in ventasDelDia" :key="venta.id">
+                <td>{{ venta.usuario }}</td>
+                <td>{{ venta.cliente }}</td>
+                <td>{{ venta.primer_fecha }}</td>
+                <td>{{ venta.numero_documento }}</td>
+                <td>S/.{{ venta.total_venta }}</td>
+                <td>{{ venta.payment_method }}</td>
+                <td>
+                  <button
+                    @click="imprimirIndividual(venta.numero_documento)"
+                    class="imprimir-button"
+                  >
+                    Imprimir
+                  </button>
+                </td>
+                <td>
+                  <button
+                    @click="detallesVenta(venta.numero_documento)"
+                    class="detalles-button"
+                  >
+                    Detalles
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- Segunda tabla para mostrar detalles de la venta -->
+        <div v-if="mostrarDetalles">
+          <!-- Aquí debes agregar la estructura de la segunda tabla con los detalles de la venta -->
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Número de Documento</th>
+                <th>SubTotal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Iterar sobre los detalles de la venta y mostrar cada fila -->
+              <tr v-for="(detalle, index) in detallesVentaData" :key="index">
+                <td>{{ detalle.producto }}</td>
+                <td>{{ detalle.precio }}</td>
+                <td>{{ detalle.cantidad }}</td>
+                <td>{{ detalle.numero_documento }}</td>
+                <td>{{ detalle.subtotal }}</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="4">Total</td>
+                <!-- Mostrar el total de la venta calculado con la función calcularTotalVenta() -->
+                <td>{{ totalVentaDetalle }}</td>
+              </tr>
+            </tfoot>
+          </table>
 
-        <table class="custom-table">
-          <thead>
-            <tr>
-              <th>Usuario</th>
-              <th>Cliente</th>
-              <th>Fecha</th>
-              <th>Número de Documento</th>
-              <th>Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="venta in ventasDelDia" :key="venta.id">
-              <td>{{ venta.usuario }}</td>
-              <td>{{ venta.cliente }}</td>
-              <td>{{ venta.primer_fecha }}</td>
-              <td>{{ venta.numero_documento }}</td>
-              <td>S/.{{ venta.total_venta }}</td>
-            </tr>
-          </tbody>
-        </table>
+          <button @click="volver" class="volver-button">Volver</button>
+        </div>
 
-        <button @click="closeModal">Cerrar</button>
+        <button @click="closeModal" class="close-modal">Cerrar</button>
       </div>
     </div>
   </div>
@@ -181,11 +256,18 @@ export default {
       quantity: 1, // Cantidad del producto a agregar
       clienteNombre: "",
       clienteDocumento: "",
+      clienteID: "",
       productsInSale: [], // Array para almacenar los productos agregados a la venta
       totalAmount: 0, // Total de la venta
       productosTicket: [],
       totalVentas: null,
+      totalVentasEfectivo: 0,
+      totalVentasYape: 0,
       ventasDelDia: [], // Inicializamos ventasDelDia como un array vacío
+      selectedPaymentMethod: false, // Estado del método de pago seleccionado
+      mostrarDetalles: false,
+      detallesVentaData: null, // Variable para almacenar los detalles de la venta
+      totalVentaDetalle: 0,
     };
   },
   created() {
@@ -198,10 +280,147 @@ export default {
     this.username = localStorage.getItem("loggedInUsername");
   },
   methods: {
+    volver() {
+      this.mostrarDetalles = false;
+    },
+    async detallesVenta(numero_documento) {
+      try {
+        console.log("Documento enviado: " + numero_documento);
+        const response = await fetch(
+          `https://sale-point-backend-test.onrender.com/sale/detallesVenta/${numero_documento}`
+        );
+
+        console.log(
+          "Después de llamar a la API para obtener detalles de la venta"
+        );
+
+        if (!response.ok) {
+          throw new Error("Error al obtener detalles de la venta");
+        }
+
+        const detallesVentaData = await response.json(); // Obtener los datos de la venta
+
+        // Verificar si se encontraron detalles de venta
+        if (!detallesVentaData || detallesVentaData.length === 0) {
+          console.log("Detalles de venta no encontrados");
+          return;
+        }
+
+        // Iterar sobre el segundo array para obtener los detalles de venta
+        const detallesVenta = detallesVentaData[0];
+
+        // Asignar los datos de la venta a una variable en el componente
+        this.detallesVentaData = detallesVenta;
+
+        // Mostrar los detalles de la venta
+        this.mostrarDetalles = true;
+        console.log("Detalles de venta obtenidos con éxito:", detallesVenta);
+
+        // Calcular el total de la venta y actualizar la variable totalVentaDetalle
+        this.totalVentaDetalle = this.calcularTotalVenta();
+        console.log("Total de la venta:", this.totalVentaDetalle);
+      } catch (error) {
+        console.error("Error al obtener detalles de la venta:", error);
+      }
+    },
+
+    calcularTotalVenta() {
+      if (!this.detallesVentaData) return 0;
+
+      // Calcular el total sumando todos los subtotales
+      return this.detallesVentaData.reduce(
+        (total, detalle) => total + detalle.subtotal,
+        0
+      );
+    },
+    async imprimirIndividual(numero_documento) {
+      try {
+        console.log("documento enviado: " + numero_documento);
+        const response = await fetch(
+          `https://sale-point-backend-test.onrender.com/sale/imprimirIndividual/${numero_documento}`
+        );
+        console.log("Después de llamar a la API para imprimir individualmente");
+
+        if (!response.ok) {
+          throw new Error("frontend: Error al imprimir individualmente");
+        }
+
+        const ventaIndividual = await response.json(); // Obtener los datos de la venta individual
+
+        // Verificar si se encontraron detalles de venta
+        if (ventaIndividual.message === "Venta no encontrada") {
+          console.log("Venta no encontrada");
+          return;
+        }
+
+        // Verificar si hay datos en la respuesta
+        ventaIndividual.forEach((array) => {
+          array.forEach((item) => {
+            if (
+              item &&
+              item.product_name &&
+              item.product_name.startsWith("Ticket")
+            ) {
+              this.productosTicket.push({
+                name: item.product_name,
+                quantity: item.quantity,
+                unit_price: item.unit_price,
+              });
+            }
+          });
+        });
+
+        this.imprimirVenta();
+        console.log("Impresión individual realizada con éxito");
+        // Aquí puedes agregar cualquier lógica adicional necesaria después de la impresión individual, si es necesario
+      } catch (error) {
+        console.error("frontend: Error al imprimir individualmente:", error);
+      }
+    },
+
+    calcularTotalVentasEfectivo() {
+      let total = 0; // Inicializar el total en 0
+
+      if (this.ventasDelDia.length === 0) {
+        return total; // Retornar 0 si no hay ventas
+      }
+
+      // Filtrar las ventas que tienen como método de pago "efectivo"
+      const ventasEfectivo = this.ventasDelDia.filter(
+        (venta) => venta.payment_method === "Efectivo"
+      );
+
+      // Sumar los totales de las ventas en efectivo
+      total = ventasEfectivo.reduce(
+        (total, venta) => total + venta.total_venta,
+        0
+      );
+
+      return total; // Retornar el total calculado
+    },
+
+    // Método para calcular el total de ventas en Yape
+    calcularTotalVentasYape() {
+      let total = 0; // Inicializar el total en 0
+
+      if (this.ventasDelDia.length === 0) {
+        return total; // Retornar 0 si no hay ventas
+      }
+
+      // Filtrar las ventas que tienen como método de pago "yape"
+      const ventasYape = this.ventasDelDia.filter(
+        (venta) => venta.payment_method === "Yape"
+      );
+
+      // Sumar los totales de las ventas en Yape
+      total = ventasYape.reduce((total, venta) => total + venta.total_venta, 0);
+
+      return total; // Retornar el total calculado
+    },
     async obtenerVentasDelDia() {
       try {
         const response = await fetch(
-          "http://localhost:3000/sale/ventas-del-dia"
+          "https://sale-point-backend-test.onrender.com/sale/ventas-del-dia"
         );
 
         if (!response.ok) {
@@ -217,7 +436,9 @@ export default {
     async mostrarTotalVentas() {
       try {
         console.log("Antes de llamar a la API");
-        const response = await fetch("http://localhost:3000/sale/total-ventas");
+        const response = await fetch(
+          "https://sale-point-backend-test.onrender.com/sale/total-ventas"
+        );
         console.log("Después de llamar a la API");
 
         if (!response.ok) {
@@ -244,9 +465,12 @@ export default {
       document.getElementById("modal").style.display = "block";
       await this.mostrarTotalVentas();
       await this.obtenerVentasDelDia();
+      this.totalVentasEfectivo = this.calcularTotalVentasEfectivo();
+      this.totalVentasYape = this.calcularTotalVentasYape();
     },
 
     closeModal() {
+      this.mostrarDetalles = false;
       // Ocultar la ventana modal al hacer clic en el botón "Cerrar"
       document.getElementById("modal").style.display = "none";
     },
@@ -255,28 +479,26 @@ export default {
         const currentDate = new Date().toLocaleString("en-US", {
           timeZone: "America/Lima",
         });
-
+        console.log("fecha de venta:" + currentDate);
         const document_number =
           document.getElementById("numBoleta").textContent;
 
-        // Obtener el cliente actual
-        const responseCliente = await fetch(
-          "http://localhost:3000/sale/primercliente"
-        );
-        if (!responseCliente.ok) {
-          throw new Error("Error al obtener el primer cliente");
-        }
-        const primerCliente = await responseCliente.json();
-        const client_id = primerCliente.id;
-
         // Obtener el usuario actual
         const user_id = localStorage.getItem("loggedInUserID");
+
+        // Método de pago predeterminado
+        let paymentMethod = "Efectivo"; // Por defecto, el método de pago es "Efectivo"
+
+        // Verificar si el método de pago está seleccionado como "Yape"
+        if (this.selectedPaymentMethod) {
+          paymentMethod = "Yape"; // Si está marcado, cambiar el método de pago a "Yape"
+        }
 
         // Iterar sobre los productos en venta y enviar una solicitud para registrar cada uno
         for (const product of this.productsInSale) {
           console.log("ID del producto:", product.name); // Agregar este registro de depuración
           const venta = {
-            client_id,
+            client_id: this.clienteID, // Usar directamente el ID del primer cliente
             user_id,
             branch_id: this.selectedBranch,
             product_id: product.product_id, // Cambiar product.id a product.product_id
@@ -284,6 +506,7 @@ export default {
             cantidad_producto: product.quantity,
             total: product.subtotal, // El total de la venta por cada producto es el subtotal
             date: currentDate,
+            payment_method: paymentMethod, // Agregar el método de pago a la solicitud
           };
           if (product.name.startsWith("Ticket")) {
             // Añadir el producto al array de productosTicket
@@ -296,7 +519,7 @@ export default {
 
           // Enviar solicitud HTTP para registrar la venta del producto
           const response = await fetch(
-            "http://localhost:3000/sale/registrar-venta",
+            "https://sale-point-backend-test.onrender.com/sale/registrar-venta",
             {
               method: "POST",
               headers: {
@@ -334,9 +557,9 @@ export default {
           <div style="text-align: center;">
                     <img src="https://i.postimg.cc/SQgdP9ds/image.png" width="80" height="80" style="display: block; margin: auto;">
                 </div>
-        <b align="center">${product.name}</b>
-        <p>Precio: S/.${product.price}</p>
-        <p align="center">¡Gracias por su compra!</p>
+        <b style="display: block; text-align: center;">${product.name}</b>
+        <p align="center">Precio: S/.${product.price}</p>
+        <p align="center">¡Gracias por su preferencia!</p>
         <hr>`; // Separador entre tickets
         }
       }
@@ -376,11 +599,13 @@ export default {
       this.quantity = 1;
       this.selectedProduct = null;
       this.totalAmount = 0;
+      // Desmarcar el checkbox al finalizar la venta
+      this.selectedPaymentMethod = false;
     },
     async getPrimerCliente() {
       try {
         const response = await fetch(
-          "http://localhost:3000/sale/primercliente"
+          "https://sale-point-backend-test.onrender.com/sale/primercliente"
         ); // Cambia la URL según la ruta correcta para obtener el primer cliente
         if (!response.ok) {
           throw new Error("Error al obtener el primer cliente");
@@ -388,6 +613,7 @@ export default {
         const primerCliente = await response.json();
         this.clienteNombre = primerCliente.name; // Actualiza el nombre del cliente
         this.clienteDocumento = primerCliente.document; // Actualiza el documento del cliente
+        this.clienteID = primerCliente.id; // Actualiza el documento del cliente
       } catch (error) {
         console.error("Error al obtener el primer cliente:", error);
         alert("Error al obtener el primer cliente");
@@ -402,7 +628,7 @@ export default {
         }
 
         const response = await fetch(
-          "http://localhost:3000/product/allproducts"
+          "https://sale-point-backend-test.onrender.com/product/allproducts"
         );
         if (!response.ok) {
           throw new Error("Error al obtener productos");
@@ -476,7 +702,7 @@ export default {
     async getNextDocumentNumber() {
       try {
         const response = await fetch(
-          "http://localhost:3000/sale/last-document-number"
+          "https://sale-point-backend-test.onrender.com/sale/last-document-number"
         );
         if (response.ok) {
           const data = await response.json();
@@ -492,7 +718,7 @@ export default {
     async getBranches() {
       try {
         const response = await fetch(
-          "http://localhost:3000/branch/allbranches"
+          "https://sale-point-backend-test.onrender.com/branch/allbranches"
         );
         if (!response.ok) {
           throw new Error("Error al obtener sucursales");

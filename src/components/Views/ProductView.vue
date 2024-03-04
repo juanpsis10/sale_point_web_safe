@@ -193,7 +193,7 @@ export default {
     async addProduct() {
       try {
         const response = await fetch(
-          "http://localhost:3000/product/addproduct",
+          "https://sale-point-backend-test.onrender.com/product/addproduct",
           {
             method: "POST",
             headers: {
@@ -227,7 +227,7 @@ export default {
     async getProducts() {
       try {
         const response = await fetch(
-          "http://localhost:3000/product/allproducts"
+          "https://sale-point-backend-test.onrender.com/product/allproducts"
         );
         if (!response.ok) {
           throw new Error("Error al obtener productos");
@@ -257,7 +257,7 @@ export default {
     async getBranches() {
       try {
         const response = await fetch(
-          "http://localhost:3000/branch/allbranches"
+          "https://sale-point-backend-test.onrender.com/branch/allbranches"
         );
         if (!response.ok) {
           throw new Error("Error al obtener sucursales");
@@ -289,7 +289,7 @@ export default {
 
         // Llamar a la API para actualizar los datos en la tabla product
         const productResponse = await fetch(
-          `http://localhost:3000/product/${id}`,
+          `https://sale-point-backend-test.onrender.com/product/${id}`,
           {
             method: "PUT",
             headers: {
@@ -305,7 +305,7 @@ export default {
 
         // Llamar al método para actualizar los datos en la tabla product_branch
         const productBranchResponse = await fetch(
-          `http://localhost:3000/product/${id}/branch/${branchId}`,
+          `https://sale-point-backend-test.onrender.com/product/${id}/branch/${branchId}`,
           {
             method: "PUT",
             headers: {
@@ -349,7 +349,7 @@ export default {
         const { price, stockQuantity } = this.editingProduct;
 
         const response = await fetch(
-          `http://localhost:3000/product/${productId}/branch/${branchId}`,
+          `https://sale-point-backend-test.onrender.com/product/${productId}/branch/${branchId}`,
           {
             method: "PUT",
             headers: {
@@ -381,7 +381,7 @@ export default {
       try {
         const { id, branch_id } = productId;
         const response = await fetch(
-          `http://localhost:3000/product/${id}/branch/${branch_id}/disable`,
+          `https://sale-point-backend-test.onrender.com/product/${id}/branch/${branch_id}/disable`,
           {
             method: "PUT",
           }
@@ -408,7 +408,7 @@ export default {
       try {
         const { id, branch_id } = productId;
         const response = await fetch(
-          `http://localhost:3000/product/${id}/branch/${branch_id}/activate`,
+          `https://sale-point-backend-test.onrender.com/product/${id}/branch/${branch_id}/activate`,
           {
             method: "PUT",
           }

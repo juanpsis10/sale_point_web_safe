@@ -1,0 +1,22 @@
+[
+    {
+        "name": "user",
+        "seq": 6
+    },
+    {
+        "name": "product",
+        "seq": 20
+    },
+    {
+        "name": "branch",
+        "seq": 6
+    },
+    {
+        "name": "client",
+        "seq": 2
+    },
+    {
+        "name": "sale",
+        "seq": 65
+    }
+]

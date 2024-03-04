@@ -149,13 +149,16 @@ export default {
     // Método para agregar una nueva sucursal
     async addBranch() {
       try {
-        const response = await fetch("http://localhost:3000/branch/addbranch", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(this.newBranch),
-        });
+        const response = await fetch(
+          "https://sale-point-backend-test.onrender.com/branch/addbranch",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(this.newBranch),
+          }
+        );
 
         if (response.ok) {
           const newBranchData = await response.json();
@@ -181,7 +184,7 @@ export default {
     async getBranches() {
       try {
         const response = await fetch(
-          "http://localhost:3000/branch/allbranches"
+          "https://sale-point-backend-test.onrender.com/branch/allbranches"
         );
         if (!response.ok) {
           throw new Error("Error al obtener las sucursales");
@@ -211,13 +214,16 @@ export default {
     async updateBranch() {
       try {
         const { id, name, location, manager, phone } = this.editingBranch;
-        const response = await fetch(`http://localhost:3000/branch/${id}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ name, location, manager, phone }),
-        });
+        const response = await fetch(
+          `https://sale-point-backend-test.onrender.com/branch/${id}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ name, location, manager, phone }),
+          }
+        );
 
         if (response.ok) {
           const updatedBranchData = await response.json();
@@ -248,7 +254,7 @@ export default {
     async disableBranch(branch) {
       try {
         const response = await fetch(
-          `http://localhost:3000/branch/${branch.id}/disable`,
+          `https://sale-point-backend-test.onrender.com/branch/${branch.id}/disable`,
           {
             method: "PUT",
           }
@@ -272,7 +278,7 @@ export default {
     async activateBranch(branch) {
       try {
         const response = await fetch(
-          `http://localhost:3000/branch/${branch.id}/activate`,
+          `https://sale-point-backend-test.onrender.com/branch/${branch.id}/activate`,
           {
             method: "PUT",
             headers: {

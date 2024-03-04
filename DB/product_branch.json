@@ -1,0 +1,58 @@
+[
+    {
+        "branch_id": 2,
+        "price": 7.0,
+        "product_id": 13,
+        "state": "active",
+        "stock_quantity": 999998
+    },
+    {
+        "branch_id": 2,
+        "price": 7.0,
+        "product_id": 14,
+        "state": "active",
+        "stock_quantity": 999999
+    },
+    {
+        "branch_id": 2,
+        "price": 5.0,
+        "product_id": 15,
+        "state": "active",
+        "stock_quantity": 999999
+    },
+    {
+        "branch_id": 2,
+        "price": 5.0,
+        "product_id": 16,
+        "state": "active",
+        "stock_quantity": 999999
+    },
+    {
+        "branch_id": 2,
+        "price": 5.0,
+        "product_id": 17,
+        "state": "active",
+        "stock_quantity": 999999
+    },
+    {
+        "branch_id": 2,
+        "price": 5.0,
+        "product_id": 18,
+        "state": "active",
+        "stock_quantity": 999999
+    },
+    {
+        "branch_id": 2,
+        "price": 5.0,
+        "product_id": 19,
+        "state": "active",
+        "stock_quantity": 999999
+    },
+    {
+        "branch_id": 2,
+        "price": 2.0,
+        "product_id": 20,
+        "state": "active",
+        "stock_quantity": 999999
+    }
+]
